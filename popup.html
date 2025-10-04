@@ -1,21 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>API Key Setup</title>
-    <style>
-        body { font-family: sans-serif; width: 250px; padding: 10px; }
-        h3 { margin-top: 0; }
-        input { width: 95%; margin-bottom: 10px; }
-        button { width: 100%; padding: 8px; background-color: #ff4500; color: white; border: none; cursor: pointer; }
-        #status { margin-top: 10px; font-size: 12px; color: green; }
-    </style>
+    <title>Reddit AI Assistant</title>
+    <link rel="stylesheet" href="popup.css">
 </head>
 <body>
-    <h3>Groq API Key</h3>
-    <p>Please enter your Groq API key.</p>
-    <input type="password" id="apiKey" placeholder="Enter your API key (gsk_...)">
-    <button id="saveBtn">Save Key</button>
-    <div id="status"></div>
+    <div class="container">
+        <!-- Subscription View -->
+        <div id="subscribe-view">
+            <header>
+                <img src="images/icon48.png" alt="Logo" class="logo">
+                <h1>Welcome to Reddit AI Assistant!</h1>
+                <p>Subscribe for updates and to unlock features.</p>
+            </header>
+            <form id="subscribe-form">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" placeholder="Enter your name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+                <button type="submit" id="subscribe-btn">Subscribe & Continue</button>
+                <div id="subscribe-status" class="status"></div>
+            </form>
+        </div>
+
+        <!-- Settings View -->
+        <div id="settings-view" style="display: none;">
+            <header>
+                 <img src="images/icon48.png" alt="Logo" class="logo">
+                 <h1>Settings</h1>
+            </header>
+            <div class="form-group">
+                <label for="apiKey">Groq API Key</label>
+                <input type="password" id="apiKey" placeholder="gsk_...">
+            </div>
+            <div class="form-group">
+                <label for="customPrompt">Custom Prompt</label>
+                <textarea id="customPrompt" rows="8"></textarea>
+            </div>
+            <button id="save-settings-btn">Save Settings</button>
+            <div id="settings-status" class="status"></div>
+        </div>
+    </div>
     <script src="popup.js"></script>
 </body>
 </html>

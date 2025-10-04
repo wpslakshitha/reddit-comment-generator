@@ -1,6 +1,6 @@
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action === "generateComment") {
-        chrome.storage.sync.get(['groqApiKey'], async (result) => {
+        chrome.storage.sync.get(['groqApiKey', 'customPrompt_reddit'], async (result) => {
             const apiKey = result.groqApiKey;
             if (!apiKey) {
                 sendResponse({ error: "Groq API Key not found. Please set it in the extension popup." });
@@ -9,8 +9,10 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
             const API_URL = 'https://api.groq.com/openai/v1/chat/completions';
             
-            // Reddit එකට ගැලපෙන්න prompt එක වෙනස් කරලා
-            const prompt = `You are a helpful assistant that generates engaging comments for the following Reddit post. Your tone can be casual, witty, or informative, but always civil. Generate three distinct comments. Respond with ONLY a valid JSON object in the format: { "comments": ["comment 1", "comment 2", "comment 3"] }. Do not include any other text or markdown. The post is:\n\n---\n\n${request.postText}`;
+            const DEFAULT_PROMPT = `You are a helpful assistant that generates engaging comments for the following Reddit post. Your tone can be casual, witty, or informative, but always civil. Generate three distinct comments. Respond with ONLY a valid JSON object in the format: { "comments": ["comment 1", "comment 2", "comment 3"] }. Do not include any other text or markdown. The post is:\n\n---\n\n`;
+
+            const userPrompt = result.customPrompt_reddit || DEFAULT_PROMPT;
+            const finalPrompt = userPrompt + request.postText;
 
             try {
                 const response = await fetch(API_URL, {
@@ -20,11 +22,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                         'Authorization': `Bearer ${apiKey}`
                     },
                     body: JSON.stringify({
-                        model: 'llama-3.1-8b-instant',
+                        model: 'llama-3.1-8b-instant', 
                         messages: [
                             { 
                                 role: 'user', 
-                                content: prompt 
+                                content: finalPrompt 
                             }
                         ],
                         response_format: { type: "json_object" }
