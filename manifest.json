@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "Reddit AI Comment Generator",
+  "version": "1.0",
+  "description": "Generates engaging comments for Reddit posts using the Groq AI API.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "*://*.reddit.com/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.reddit.com/*"],
+      "js": ["content.js"
+      ]
+    }
+  ]
+}
