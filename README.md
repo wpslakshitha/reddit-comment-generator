@@ -79,14 +79,14 @@ A brief overview of the key files in this project:
 ```
 .
 ├── images/
-│   ├── icon16.png
-│   ├── icon48.png
-│   └── icon128.png
+│   ├── icon16.png, icon48.png, icon128.png
 ├── background.js       # Handles communication with the Groq API.
-├── content.js          # Injects the button and suggestions into the Reddit page.
+├── content.js          # Injects the button and suggestions into the LinkedIn page.
+├── content.css         # Basic styles for injected elements.
 ├── manifest.json       # The core configuration file for the Chrome Extension.
-├── popup.html          # The HTML for the API key entry popup.
-├── popup.js            # The JavaScript logic for saving the API key.
+├── popup.html          # The HTML for the professional settings popup.
+├── popup.css           # Styles for the popup UI.
+├── popup.js            # The JavaScript logic for subscription and saving settings.
 └── README.md           # You are here!
 ```
 
