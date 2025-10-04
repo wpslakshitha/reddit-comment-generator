@@ -3,7 +3,6 @@ function addGenerateButton(postElement) {
         return;
     }
 
-    // Action bar එක Shadow DOM එක ඇතුළෙන් හොයාගන්නවා
     const actionBar = postElement.shadowRoot.querySelector('div[data-testid="action-row"]');
     
     if (!actionBar) {
@@ -31,9 +30,6 @@ function addGenerateButton(postElement) {
         e.preventDefault();
         e.stopPropagation();
 
-        // --- වැදගත්ම වෙනස මෙතන ---
-        // Title එක සහ Body එක Shadow DOM එකෙන් පිටතින් (light DOM) හොයාගන්නවා
-        // ඔබ එවූ HTML එකට අනුව, මේවා තමයි නිවැරදිම selectors
         const titleElement = postElement.querySelector('h1[slot="title"]');
         const bodyElement = postElement.querySelector('shreddit-post-text-body');
         
@@ -75,7 +71,6 @@ function addGenerateButton(postElement) {
     actionBar.appendChild(button);
 }
 
-// displaySuggestions සහ ඉතුරු functions වල වෙනසක් නැහැ
 function displaySuggestions(postElement, comments) {
     const container = document.createElement('div');
     container.className = 'ai-suggestions-container';
