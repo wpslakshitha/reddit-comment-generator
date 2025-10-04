@@ -3,7 +3,7 @@
 A powerful Chrome Extension that uses the blazing-fast Groq AI API to generate insightful and engaging comments for Reddit posts. This tool helps you engage with communities more efficiently by providing relevant comment suggestions with a single click.
 
 <!-- TODO: Add a GIF or screenshot of the extension in action. A short screen recording converted to a GIF is highly recommended. -->
-![Demo Screenshot](https://via.placeholder.com/800x450.png?text=Add+a+Screenshot+or+GIF+of+the+Extension)
+![Extension Demo](https://github.com/wpslakshitha/reddit-comment-generator/blob/main/images/demo.gif?raw=true)
 
 ## ✨ Features
 
